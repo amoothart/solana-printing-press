@@ -108,12 +108,14 @@ describe("printing-press", () => {
     await program.methods.transferToken().accounts({
       tokenProgram: TOKEN_PROGRAM_ID,
       from: associatedTokenAccount,
-      fromAuthority: myWallet,
+      signer: myWallet,
       to: toATA,
     }).rpc();
 
     // Get minted token amount on the ATA for our anchor wallet
     const minted = (await program.provider.connection.getParsedAccountInfo(associatedTokenAccount)).value.data.parsed.info.tokenAmount.amount;
-    assert.equal(minted, 5);
+    assert.equal(minted, 3);
+    const transferred = (await program.provider.connection.getParsedAccountInfo(toATA)).value.data.parsed.info.tokenAmount.amount;
+    assert.equal(transferred, 7);
   });
 });

@@ -33,7 +33,7 @@ pub mod printing_press {
         let cpi_ctx = CpiContext::new(cpi_program, transfer_instruction);
 
         // Execute anchor's helper function to mint tokens
-        anchor_spl::token::transfer(cpi_ctx, 5)?;
+        anchor_spl::token::transfer(cpi_ctx, 7)?;
 
         Ok(())
     }
